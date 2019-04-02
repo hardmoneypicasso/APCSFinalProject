@@ -2,7 +2,7 @@
 public class Driver {
 	public static void main(String[] args) {
 		
-		Graphics g= new Graphics();
+		Graphics frame= new Graphics();
 		
 	}
 }
