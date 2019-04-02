@@ -19,6 +19,7 @@ public class Graphics {
 		jf.setSize(1600, 1600);
 		jf.setResizable(false);
 		jf.setVisible(true);
+		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 	}
 	
 }
