@@ -15,7 +15,7 @@ public class Tester {
 		while(turnChoice) {
 			System.out.println("make a move (S= shoot, B= block, R= reload).");
 			move= kb.next().charAt(0);
-			
+			//
 			if(compMove != 'R') {
 				int chance= (int) (Math.random()*2);
 				if(chance== 0) {
