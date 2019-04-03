@@ -1,6 +1,7 @@
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Graphics {
 	
@@ -11,7 +12,8 @@ public class Graphics {
 	private final static Color COMMIE= new Color(255, 0, 0);
 	private final static Color BOURGOIS= new Color(51, 153, 255);
 	private final static Color INDY= new Color(0, 255, 0);
-	
+private static JPanel pane= new JPanel();
+
 	//-------------------------------
 	//Graphics() constructor
 	//
@@ -27,20 +29,21 @@ public class Graphics {
 		jf.setResizable(false);
 		jf.setVisible(true);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.add(pane);
 	}
 	
-	
+
 	
 	public static void setRed() {
-		jf.setBackground(COMMIE);
+		pane.setBackground(COMMIE);
 	}
 	
 	public static void setBlue() {
-		jf.setBackground(BOURGOIS);
+		pane.setBackground(BOURGOIS);
 	}
 	
 	public static void setGreen() {
-		jf.setBackground(INDY);
+		pane.setBackground(INDY);
 	}
 	
 	
