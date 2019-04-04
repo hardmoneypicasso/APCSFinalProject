@@ -1,8 +1,9 @@
+import javax.swing.JPanel;
 
 public class Driver {
 	public static void main(String[] args) {
 		
-		Graphics frame= new Graphics();
+		Graphics.setFrame();
 		
 		// Peter was here
 	}
