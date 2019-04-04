@@ -5,8 +5,5 @@ public class Driver {
 		Graphics frame= new Graphics();
 		
 		// Peter was here
-		//d
-		//f
-		
 	}
 }
