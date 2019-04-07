@@ -20,7 +20,10 @@ public class Graphics {
 	private static Color commie= Color.RED;
 	private static Color cappie= Color.BLUE;
 	private static Color indy= Color.GREEN;
+	private static int[][] arr= new int[rows][rows];
 	
+	//--------------------------------
+	//--------------------------------
 	public static void createFrame() {
 		jf.setSize(height, width);
 		jf.setVisible(true);
@@ -28,11 +31,15 @@ public class Graphics {
 		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 	}
 	
+	//--------------------------------
+	//--------------------------------
 	public static void createContainer() {
 		frame= jf.getContentPane();
 		frame.setLayout(new GridLayout(rows, rows));
 	}
 	
+	//--------------------------------
+	//--------------------------------
 	public static void createGrid() {
 		Color temp;
 		double random;
@@ -41,12 +48,15 @@ public class Graphics {
 				JPanel panel= new JPanel();
 				if(i<2 && j<2) {
 					temp= commie;
+					arr[i][j]= 1;
 				}else {
 					random= Math.random()*100;
 					if(random<= 5) {
 						temp= indy;
+						arr[i][j]= 0;
 					}else {
 						temp= cappie;
+						arr[i][j]= -1;
 					}
 				}
 				panel.setBackground(temp);
@@ -55,5 +65,16 @@ public class Graphics {
 		}
 	}
 	
+	//--------------------------------
+	//--------------------------------
+	public static int[][] getArray() {
+		return arr;
+	}
+	
+	//--------------------------------
+	//--------------------------------
+	public static int getArraySpot(int i, int j){
+		return arr[i][j];
+	}
 	
 }
