@@ -1,52 +1,59 @@
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
+import javax.sound.sampled.Line;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Graphics {
-	
-	//private instance data
+
+	private final static int height= 1600;
+	private final static int width= 1600;
+	private final static int rows= 10;
 	private static JFrame jf= new JFrame();
-	private static int width= 1600;
-	private static int height= 1600;
-	private final static Color COMMIE= new Color(255, 0, 0);
-	private final static Color BOURGOIS= new Color(51, 153, 255);
-	private final static Color INDY= new Color(0, 255, 0);
-private static JPanel pane= new JPanel();
-
-	//-------------------------------
-	//Graphics() constructor
-	//
-	//Pre-condition: none
-	//post-condition: creates JFrame where the game will occur, and be edited further
-	//
-	//@param n/a	@return n/a
-	//
-	//BY: PETER WHITE
-	//-------------------------------
-	public static void setFrame() {
-		jf.setSize(width, height);
-		jf.setResizable(false);
+	private static Container frame= new Container();
+	private static Color commie= Color.RED;
+	private static Color cappie= Color.BLUE;
+	private static Color indy= Color.GREEN;
+	
+	public static void createFrame() {
+		jf.setSize(height, width);
 		jf.setVisible(true);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.add(pane);
+		jf.setResizable(false);
+		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 	}
 	
-
-	
-	public static void setRed() {
-		pane.setBackground(COMMIE);
+	public static void createContainer() {
+		frame= jf.getContentPane();
+		frame.setLayout(new GridLayout(rows, rows));
 	}
 	
-	public static void setBlue() {
-		pane.setBackground(BOURGOIS);
+	public static void createGrid() {
+		Color temp;
+		double random;
+		for(int i= 0; i< rows; i++) {
+			for(int j= 0; j< rows; j++) {
+				JPanel panel= new JPanel();
+				if(i<2 && j<2) {
+					temp= commie;
+				}else {
+					random= Math.random()*100;
+					if(random<= 5) {
+						temp= indy;
+					}else {
+						temp= cappie;
+					}
+				}
+				panel.setBackground(temp);
+				frame.add(panel);
+			}
+		}
 	}
-	
-	public static void setGreen() {
-		pane.setBackground(INDY);
-	}
-	
-	
 	
 	
 }
