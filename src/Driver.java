@@ -6,6 +6,7 @@ public class Driver {
 		Graphics.createFrame();
 		Graphics.createContainer();
 		Graphics.createGrid();
+		Graphics.fillGrid();
 		
 	}
 }
