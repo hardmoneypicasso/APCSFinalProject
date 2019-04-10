@@ -20,6 +20,7 @@ public class Graphics {
 	private static Color commie= Color.RED;
 	private static Color cappie= Color.BLUE;
 	private static Color indy= Color.GREEN;
+	private static Color back= Color.BLACK;
 	private static int[][] arr= new int[rows][rows];
 	
 	//--------------------------------
@@ -35,32 +36,25 @@ public class Graphics {
 	//--------------------------------
 	public static void createContainer() {
 		frame= jf.getContentPane();
-		frame.setLayout(new GridLayout(rows, rows));
+		frame.setLayout(new GridLayout(rows, rows, 2, 2));
 	}
 	
 	//--------------------------------
 	//--------------------------------
 	public static void createGrid() {
-		Color temp;
 		double random;
 		for(int i= 0; i< rows; i++) {
 			for(int j= 0; j< rows; j++) {
-				JPanel panel= new JPanel();
 				if(i<2 && j<2) {
-					temp= commie;
 					arr[i][j]= 1;
 				}else {
 					random= Math.random()*100;
 					if(random<= 5) {
-						temp= indy;
 						arr[i][j]= 0;
 					}else {
-						temp= cappie;
 						arr[i][j]= -1;
 					}
 				}
-				panel.setBackground(temp);
-				frame.add(panel);
 			}
 		}
 	}
@@ -77,4 +71,23 @@ public class Graphics {
 		return arr[i][j];
 	}
 	
+	//--------------------------------
+	//--------------------------------
+	public static void fillGrid() {
+		Color temp;
+		for(int i= 0; i< rows; i++) {
+			for(int j= 0; j< rows; j++) {
+				JPanel panel= new JPanel();
+				if(arr[i][j]== 1) {
+					temp= commie;
+				}else if(arr[i][j]== -1) {
+					temp= cappie;
+				}else {
+					temp= indy;
+				}
+				panel.setBackground(temp);
+				frame.add(panel);
+			}
+		}
+	}
 }
