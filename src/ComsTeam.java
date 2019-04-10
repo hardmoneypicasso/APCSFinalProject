@@ -1,4 +1,4 @@
-//Peter Gay
+//Peter
 public class ComsTeam extends State implements Tile {
 
 }
