@@ -1,47 +1,80 @@
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
+import javax.sound.sampled.Line;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Graphics {
-	
-	//private instance data
-	private static JFrame jf= new JFrame();
-	private static int width= 1600;
-	private static int height= 1600;
-	private final static Color COMMIE= new Color(255, 0, 0);
-	private final static Color BOURGOIS= new Color(51, 153, 255);
-	private final static Color INDY= new Color(0, 255, 0);
-	private static JPanel pane= new JPanel();
-	private final static int ROWS= 10;
 
-	public static void setFrame() {
-		jf.setSize(width, height);
-		jf.setResizable(false);
+	private final static int height= 1600;
+	private final static int width= 1600;
+	private final static int rows= 10;
+	private static JFrame jf= new JFrame();
+	private static Container frame= new Container();
+	private static Color commie= Color.RED;
+	private static Color cappie= Color.BLUE;
+	private static Color indy= Color.GREEN;
+	private static int[][] arr= new int[rows][rows];
+	
+	//--------------------------------
+	//--------------------------------
+	public static void createFrame() {
+		jf.setSize(height, width);
 		jf.setVisible(true);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setResizable(false);
+		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
 	}
 	
-	public static void setGrid() {
-		for(int r= 0; r< ROWS; r++) {
-			for(int c= 0; c< ROWS; c++) {
-				jf.add(pane);
+	//--------------------------------
+	//--------------------------------
+	public static void createContainer() {
+		frame= jf.getContentPane();
+		frame.setLayout(new GridLayout(rows, rows));
+	}
+	
+	//--------------------------------
+	//--------------------------------
+	public static void createGrid() {
+		Color temp;
+		double random;
+		for(int i= 0; i< rows; i++) {
+			for(int j= 0; j< rows; j++) {
+				JPanel panel= new JPanel();
+				if(i<2 && j<2) {
+					temp= commie;
+					arr[i][j]= 1;
+				}else {
+					random= Math.random()*100;
+					if(random<= 5) {
+						temp= indy;
+						arr[i][j]= 0;
+					}else {
+						temp= cappie;
+						arr[i][j]= -1;
+					}
+				}
+				panel.setBackground(temp);
+				frame.add(panel);
 			}
 		}
-		jf.setLayout(new GridLayout(10, 10));
-	}
-
-	
-	public static void setRed() {
-		pane.setBackground(COMMIE);
 	}
 	
-	public static void setBlue() {
-		pane.setBackground(BOURGOIS);
+	//--------------------------------
+	//--------------------------------
+	public static int[][] getArray() {
+		return arr;
 	}
 	
-	public static void setGreen() {
-		pane.setBackground(INDY);
+	//--------------------------------
+	//--------------------------------
+	public static int getArraySpot(int i, int j){
+		return arr[i][j];
 	}
+	
 }
