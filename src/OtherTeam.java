@@ -1,4 +1,4 @@
 //Nick
-public class OtherTeam extends State implements Tile {
+public class OtherTeam extends StateButton implements Tile {
 
 }
