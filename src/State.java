@@ -1,4 +1,0 @@
-//Cesar
-public class State {
-
-}
