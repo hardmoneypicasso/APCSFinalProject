@@ -11,4 +11,13 @@ public class StateButton extends JButton {
 		state= c;
 		
 	}
+
+	public int getState() {
+		return 0;
+	}
+
+	public int getNumberOf() {
+		
+		return 0;
+	}
 }

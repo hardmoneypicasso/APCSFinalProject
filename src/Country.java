@@ -3,5 +3,9 @@ public enum Country {
 	capitalist,
 	communist,
 	independent,
-	unknown
+	unknown,
+	
+	Peacful,
+	Warring,
+	Loss
 }
