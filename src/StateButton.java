@@ -20,4 +20,5 @@ public class StateButton extends JButton {
 		
 		return 0;
 	}
+
 }
