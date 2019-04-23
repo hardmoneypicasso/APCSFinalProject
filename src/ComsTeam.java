@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.io.IOException;
 
 import javax.swing.JButton;
 
@@ -37,12 +38,30 @@ public class ComsTeam extends StateButton implements Tile {
 		return count;
 	}
 	
-	public Country victoryState() {
+	public void victoryState() throws IOException {
 		Country result= Country.unknown;
 		if(this.getNumberOf()== 100) {
 			result= Country.Warring;
-		}else if(this.getNumberOf() != 100 && IndTeam.getPeace(countInd)) {
+		}else if(this.getNumberOf() != 100 && OtherTeam.getPeace(countInd)) {
 			result= Country.Peacful;
+		}else if(Graphics.turnCount > 49) {
+			result= Country.Loss;
+		}else {
+			result= Country.unknown;
+		}
+		
+		if(!(result.equals(Country.unknown))) {
+			endGame(result);
+		}
+	}
+	
+	public void endGame(Country result) throws IOException {
+		if(result.equals(Country.Warring)) {
+			Graphics.War();
+		}else if(result.equals(Country.Peacful)) {
+			Graphics.Peace();
+		}else {
+			Graphics.Loss();
 		}
 	}
 	
