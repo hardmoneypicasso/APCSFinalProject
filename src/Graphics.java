@@ -4,9 +4,11 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.geom.Line2D;
 
 import javax.sound.sampled.Line;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,9 +16,10 @@ public class Graphics {
 
 	private final static int height= 1600;
 	private final static int width= 1600;
+	private final static int size= 160;
 	private final static int rows= 10;
 	private static JFrame jf= new JFrame();
-	private static Container frame= new Container();
+	private static JPanel panel= new JPanel();
 	private static Color commie= Color.RED;
 	private static Color cappie= Color.BLUE;
 	private static Color indy= Color.GREEN;
@@ -26,17 +29,12 @@ public class Graphics {
 	//--------------------------------
 	//--------------------------------
 	public static void createFrame() {
-		jf.setSize(height, width);
+		jf.setSize(width, height);
 		jf.setVisible(true);
-		jf.setResizable(false);
+		jf.setResizable(true);
 		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
-	}
-	
-	//--------------------------------
-	//--------------------------------
-	public static void createContainer() {
-		frame= jf.getContentPane();
-		frame.setLayout(new GridLayout(rows, rows, 2, 2));
+		jf.setLayout(new GridLayout(0,1));
+		jf.add(panel);
 	}
 	
 	//--------------------------------
@@ -75,19 +73,38 @@ public class Graphics {
 	//--------------------------------
 	public static void fillGrid() {
 		Color temp;
+		panel.setLayout(new GridLayout(rows, rows));
 		for(int i= 0; i< rows; i++) {
 			for(int j= 0; j< rows; j++) {
-				JPanel panel= new JPanel();
+				JButton button;
 				if(arr[i][j]== 1) {
 					temp= commie;
+					button= new ComsTeam(Country.communist);
+					button.addActionListener((ActionEvent e) -> comButtonPressed(button));
 				}else if(arr[i][j]== -1) {
 					temp= cappie;
+					button= new StateButton(Country.capitalist);
+					button.addActionListener((ActionEvent e) -> capButtonPressed(button));
 				}else {
 					temp= indy;
+					button= new StateButton(Country.independent);
+					button.addActionListener((ActionEvent e) -> indButtonPressed(button));
 				}
-				panel.setBackground(temp);
-				frame.add(panel);
+				button.setBackground(temp);
+				panel.add(button);
 			}
 		}
+	}
+
+	private static void comButtonPressed(JButton button) {
+		((ComsTeam) button).pressed();
+	}
+	
+	private static void capButtonPressed(JButton button) {
+		((CapsTeam) button).pressed();
+	}
+	
+	private static void indButtonPressed(JButton button) {
+		((OtherTeam) button).pressed();
 	}
 }

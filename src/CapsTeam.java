@@ -1,4 +1,4 @@
-
-public class CapsTeam extends State implements Tile {
+//Cesar
+public class CapsTeam extends StateButton implements Tile {
 
 }
